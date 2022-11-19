@@ -7,12 +7,12 @@ export const Onboarding = () => {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'red',
+      backgroundColor: '#777',
     },
     text: {
       textAlign: 'center',
       fontSize: 24,
-      fontFamily: 'SF-Pro-Text-Bold',
+      fontFamily: 'Roboto-Black',
     },
   });
 
