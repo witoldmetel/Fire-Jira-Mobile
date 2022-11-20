@@ -16,7 +16,7 @@ module.exports = {
           'error',
           {
             tabWidth: 2,
-            printWidth: 120,
+            printWidth: 100,
           },
         ],
       },

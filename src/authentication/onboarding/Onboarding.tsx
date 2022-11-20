@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {Box} from '../../core/components';
 import {useTheme} from '../../hooks/useTheme';
 import {Slide} from './Slide';
 
@@ -32,9 +31,7 @@ export const Onboarding = () => {
     <View style={styles.container}>
       <View style={styles.slider}>
         <ScrollView style={{margin: spacing.l}}>
-          <Box>
-            <Slide />
-          </Box>
+          <Slide />
           <Slide />
           <Slide />
         </ScrollView>

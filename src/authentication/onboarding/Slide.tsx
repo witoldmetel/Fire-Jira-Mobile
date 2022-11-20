@@ -1,11 +1,10 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Text} from '../../core/components';
+import {Box, Text} from '../../core/components';
 
 export const Slide = () => {
   return (
-    <View>
+    <Box>
       <Text>Slide</Text>
-    </View>
+    </Box>
   );
 };

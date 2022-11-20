@@ -1,25 +1,28 @@
-import React, {ReactNode} from 'react';
-import {StyleProp, View, ViewStyle} from 'react-native';
+import React from 'react';
+import {Dimensions, View} from 'react-native';
 import {useTheme} from '../../../hooks/useTheme';
+import {getResponsiveValue} from '../../../utils/getResponsiveValue';
 
 type BoxProps = {
-  style?: StyleProp<ViewStyle>;
-  children?: ReactNode;
+  children: React.ReactNode;
+
+  padding?: any;
+  margin?: any;
+  backgroundColor?: any;
 };
 
-export const Box = ({style, children, ...rest}: BoxProps) => {
+export const Box = ({padding, margin, backgroundColor, children, ...rest}: BoxProps) => {
   const theme = useTheme();
+  const dimensions = Dimensions.get('window');
 
   return (
     <View
-      style={[
-        {
-          margin: theme.spacing.m,
-          padding: theme.spacing.l,
-          backgroundColor: theme.palette.background.paper,
-        },
-        style,
-      ]}
+      style={{
+        margin: theme.spacing[getResponsiveValue({value: margin, dimensions, theme})],
+        padding: theme.spacing[getResponsiveValue({value: padding, dimensions, theme})],
+        backgroundColor:
+          theme.palette[getResponsiveValue({value: backgroundColor, dimensions, theme})],
+      }}
       {...rest}>
       {children}
     </View>
