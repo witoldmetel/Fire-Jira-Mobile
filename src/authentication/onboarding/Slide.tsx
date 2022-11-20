@@ -3,7 +3,7 @@ import {Box, Text} from '../../core/components';
 
 export const Slide = () => {
   return (
-    <Box>
+    <Box margin="xl" padding="l" backgroundColor="divider">
       <Text>Slide</Text>
     </Box>
   );

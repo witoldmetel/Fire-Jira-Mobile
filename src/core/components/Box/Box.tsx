@@ -3,13 +3,14 @@ import {Dimensions, View} from 'react-native';
 import {useTheme} from '../../../hooks/useTheme';
 import {getResponsiveValue} from '../../../utils/getResponsiveValue';
 
-type BoxProps = {
-  children: React.ReactNode;
+import type {palette} from '../../theme/palette';
+import type {spacing} from '../../theme/spacing';
 
-  padding?: any;
-  margin?: any;
-  backgroundColor?: any;
-};
+interface BoxProps extends React.ComponentProps<typeof View> {
+  padding?: keyof typeof spacing;
+  margin?: keyof typeof spacing;
+  backgroundColor?: keyof typeof palette;
+}
 
 export const Box = ({padding, margin, backgroundColor, children, ...rest}: BoxProps) => {
   const theme = useTheme();
@@ -18,10 +19,19 @@ export const Box = ({padding, margin, backgroundColor, children, ...rest}: BoxPr
   return (
     <View
       style={{
-        margin: theme.spacing[getResponsiveValue({value: margin, dimensions, theme})],
-        padding: theme.spacing[getResponsiveValue({value: padding, dimensions, theme})],
-        backgroundColor:
-          theme.palette[getResponsiveValue({value: backgroundColor, dimensions, theme})],
+        margin: getResponsiveValue({
+          value: margin ? theme.spacing[margin] : theme.spacing.m,
+          dimensions,
+          theme,
+        }),
+        padding: getResponsiveValue({
+          value: padding ? theme.spacing[padding] : theme.spacing.m,
+          dimensions,
+          theme,
+        }),
+        backgroundColor: backgroundColor
+          ? theme.palette[backgroundColor]
+          : theme.palette.primary.main,
       }}
       {...rest}>
       {children}
