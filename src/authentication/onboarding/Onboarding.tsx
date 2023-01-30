@@ -1,24 +1,29 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Dimensions} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
-import {useTheme} from '../../hooks/useTheme';
 import {Slide} from './Slide';
 
-export const Onboarding = () => {
-  const {spacing} = useTheme();
+const {width, height} = Dimensions.get('window');
 
+export const Onboarding = () => {
   return (
     <View style={styles.container}>
       <View style={styles.slider}>
-        <ScrollView style={{margin: spacing.l}}>
+        <ScrollView
+          horizontal
+          snapToInterval={width}
+          decelerationRate="fast"
+          showsHorizontalScrollIndicator={false}
+          bounces={false}>
           <Slide />
           <Slide />
           <Slide />
         </ScrollView>
       </View>
       <View style={styles.footer}>
-        <Text>Onboarding</Text>
+        <View style={{...StyleSheet.absoluteFillObject, backgroundColor: 'cyan'}} />
+        <View style={{flex: 1, backgroundColor: 'white', borderTopLeftRadius: 75}} />
       </View>
     </View>
   );
@@ -27,20 +32,14 @@ export const Onboarding = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#777',
+    backgroundColor: 'white',
   },
   slider: {
-    flex: 0.6,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#777',
+    height: 0.6 * height,
+    backgroundColor: 'cyan',
+    borderBottomRightRadius: 75,
   },
   footer: {
     flex: 1,
-    textAlign: 'center',
-    fontSize: 24,
-    fontFamily: 'Roboto-Black',
   },
 });
