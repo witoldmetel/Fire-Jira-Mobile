@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+
 import {useTheme} from '../../hooks/useTheme';
 import {Slide} from './Slide';
 

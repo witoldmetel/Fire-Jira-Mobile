@@ -1,7 +1,6 @@
 import React from 'react';
-import {Dimensions, View} from 'react-native';
+import {ColorValue, View} from 'react-native';
 import {useTheme} from '../../../hooks/useTheme';
-import {getResponsiveValue} from '../../../utils/getResponsiveValue';
 
 import type {palette} from '../../theme/palette';
 import type {spacing} from '../../theme/spacing';
@@ -14,24 +13,15 @@ interface BoxProps extends React.ComponentProps<typeof View> {
 
 export const Box = ({padding, margin, backgroundColor, children, ...rest}: BoxProps) => {
   const theme = useTheme();
-  const dimensions = Dimensions.get('window');
 
   return (
     <View
       style={{
-        margin: getResponsiveValue({
-          value: margin ? theme.spacing[margin] : theme.spacing.m,
-          dimensions,
-          theme,
-        }),
-        padding: getResponsiveValue({
-          value: padding ? theme.spacing[padding] : theme.spacing.m,
-          dimensions,
-          theme,
-        }),
+        margin: margin ? theme.spacing[margin] : theme.spacing.m,
+        padding: padding ? theme.spacing[padding] : theme.spacing.m,
         backgroundColor: backgroundColor
-          ? theme.palette[backgroundColor]
-          : theme.palette.primary.main,
+          ? (theme.palette[backgroundColor] as ColorValue)
+          : (theme.palette.primary.main as ColorValue),
       }}
       {...rest}>
       {children}
