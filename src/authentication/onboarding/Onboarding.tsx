@@ -5,26 +5,6 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {useTheme} from '../../hooks/useTheme';
 import {Slide} from './Slide';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#777',
-  },
-  slider: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#777',
-  },
-  footer: {
-    textAlign: 'center',
-    fontSize: 24,
-    fontFamily: 'Roboto-Black',
-  },
-});
-
 export const Onboarding = () => {
   const {spacing} = useTheme();
 
@@ -37,9 +17,30 @@ export const Onboarding = () => {
           <Slide />
         </ScrollView>
       </View>
-      <View>
-        <Text style={styles.footer}>Onboarding</Text>
+      <View style={styles.footer}>
+        <Text>Onboarding</Text>
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#777',
+  },
+  slider: {
+    flex: 0.6,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#777',
+  },
+  footer: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 24,
+    fontFamily: 'Roboto-Black',
+  },
+});
