@@ -1,10 +1,9 @@
 import React from 'react';
-import {StyleSheet, View, Text, Dimensions} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
-import {Slide} from './Slide';
-
-const {width, height} = Dimensions.get('window');
+import dimensions from '../../utils/dimensions';
+import {Slide, SLIDE_HEIGHT} from './Slide';
 
 export const Onboarding = () => {
   return (
@@ -12,13 +11,13 @@ export const Onboarding = () => {
       <View style={styles.slider}>
         <ScrollView
           horizontal
-          snapToInterval={width}
+          snapToInterval={dimensions.screenWidth}
           decelerationRate="fast"
           showsHorizontalScrollIndicator={false}
           bounces={false}>
-          <Slide />
-          <Slide />
-          <Slide />
+          <Slide label="Relaxed" />
+          <Slide label="PlayFul" labelPostion="right" />
+          <Slide label="Excentric" />
         </ScrollView>
       </View>
       <View style={styles.footer}>
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   slider: {
-    height: 0.6 * height,
+    height: SLIDE_HEIGHT,
     backgroundColor: 'cyan',
     borderBottomRightRadius: 75,
   },
