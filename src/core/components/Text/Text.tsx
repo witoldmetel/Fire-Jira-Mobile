@@ -19,7 +19,7 @@ export const Text = ({variant = 'body1', color, children, ...rest}: TextProps) =
         {
           color: color
             ? (theme.palette[color] as ColorValue)
-            : (theme.palette.secondary.main as ColorValue),
+            : (theme.palette.text.primary as ColorValue),
           ...theme.typography.textVariants[variant],
         } as StyleProp<TextStyle>
       }

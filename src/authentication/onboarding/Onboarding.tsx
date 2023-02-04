@@ -1,45 +1,43 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {Animated, StyleSheet, View} from 'react-native';
 
-import {useTheme} from '../../hooks/useTheme';
-import {Slide} from './Slide';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#777',
-  },
-  slider: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#777',
-  },
-  footer: {
-    textAlign: 'center',
-    fontSize: 24,
-    fontFamily: 'Roboto-Black',
-  },
-});
+import dimensions from '../../utils/dimensions';
+import {Slide, SLIDE_HEIGHT} from './Slide';
 
 export const Onboarding = () => {
-  const {spacing} = useTheme();
-
   return (
     <View style={styles.container}>
       <View style={styles.slider}>
-        <ScrollView style={{margin: spacing.l}}>
-          <Slide />
-          <Slide />
-          <Slide />
-        </ScrollView>
+        <Animated.ScrollView
+          horizontal
+          snapToInterval={dimensions.screenWidth}
+          decelerationRate="fast"
+          showsHorizontalScrollIndicator={false}
+          bounces={false}>
+          <Slide label="Relaxed" />
+          <Slide label="PlayFul" labelPostion="right" />
+          <Slide label="Excentric" />
+        </Animated.ScrollView>
       </View>
-      <View>
-        <Text style={styles.footer}>Onboarding</Text>
+      <View style={styles.footer}>
+        <View style={{...StyleSheet.absoluteFillObject, backgroundColor: 'cyan'}} />
+        <View style={{flex: 1, backgroundColor: 'white', borderTopLeftRadius: 75}} />
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  slider: {
+    height: SLIDE_HEIGHT,
+    backgroundColor: 'cyan',
+    borderBottomRightRadius: 75,
+  },
+  footer: {
+    flex: 1,
+  },
+});

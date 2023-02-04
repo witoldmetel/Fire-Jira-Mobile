@@ -17,11 +17,11 @@ export const Box = ({padding, margin, backgroundColor, children, ...rest}: BoxPr
   return (
     <View
       style={{
-        margin: margin ? theme.spacing[margin] : theme.spacing.m,
-        padding: padding ? theme.spacing[padding] : theme.spacing.m,
+        margin: margin ? theme.spacing[margin] : theme.spacing.s,
+        padding: padding ? theme.spacing[padding] : theme.spacing.s,
         backgroundColor: backgroundColor
           ? (theme.palette[backgroundColor] as ColorValue)
-          : (theme.palette.primary.main as ColorValue),
+          : ('transparent' as ColorValue),
       }}
       {...rest}>
       {children}
