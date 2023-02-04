@@ -1,6 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {Animated, StyleSheet, View} from 'react-native';
 
 import dimensions from '../../utils/dimensions';
 import {Slide, SLIDE_HEIGHT} from './Slide';
@@ -9,7 +8,7 @@ export const Onboarding = () => {
   return (
     <View style={styles.container}>
       <View style={styles.slider}>
-        <ScrollView
+        <Animated.ScrollView
           horizontal
           snapToInterval={dimensions.screenWidth}
           decelerationRate="fast"
@@ -18,7 +17,7 @@ export const Onboarding = () => {
           <Slide label="Relaxed" />
           <Slide label="PlayFul" labelPostion="right" />
           <Slide label="Excentric" />
-        </ScrollView>
+        </Animated.ScrollView>
       </View>
       <View style={styles.footer}>
         <View style={{...StyleSheet.absoluteFillObject, backgroundColor: 'cyan'}} />
