@@ -6,10 +6,9 @@ import {useTheme} from '../../hooks/useTheme';
 import dimensions from '../../utils/dimensions';
 import {getCustomFontSize} from '../../utils/typography';
 
-type SlideProps = {
-  title: string;
-  titlePosition: 'left' | 'right';
-};
+import type {SlideType} from './types';
+
+type SlideProps = Pick<SlideType, 'title' | 'titlePosition'>;
 
 export const SLIDE_HEIGHT = 0.65 * dimensions.screenHeight;
 export const SLIDE_WIDTH = dimensions.screenWidth;

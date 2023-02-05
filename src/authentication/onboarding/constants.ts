@@ -1,12 +1,8 @@
 import {theme} from '../../core/theme';
 
-export const SLIDES: {
-  title: string;
-  titlePosition: 'left' | 'right';
-  subtitle: string;
-  description: string;
-  backgroundColor?: string;
-}[] = [
+import type {SlideType} from './types';
+
+export const SLIDES: SlideType[] = [
   {
     title: 'Visualize',
     titlePosition: 'left',
