@@ -8,7 +8,9 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import dimensions from '../../utils/dimensions';
+import {SLIDES} from './constants';
 import {Slide, SLIDE_HEIGHT} from './Slide';
+import {theme} from '../../core/theme';
 
 export const Onboarding = () => {
   const x = useSharedValue(0);
@@ -16,8 +18,8 @@ export const Onboarding = () => {
   const animationStyle = useAnimatedStyle(() => ({
     backgroundColor: interpolateColor(
       x.value,
-      [0, dimensions.screenWidth, dimensions.screenWidth * 2, dimensions.screenWidth * 3],
-      ['red', 'blue', 'green', 'pink'],
+      SLIDES.map((_, index) => dimensions.screenWidth * index),
+      SLIDES.map((slide) => slide.backgroundColor!),
     ),
   }));
 
@@ -38,15 +40,14 @@ export const Onboarding = () => {
           scrollEventThrottle={1}
           bounces={false}
           onScroll={scrollHandler}>
-          <Slide label="Relaxed" />
-          <Slide label="PlayFul" labelPostion="right" />
-          <Slide label="Excentric" />
-          <Slide label="WoW" labelPostion="right" />
+          {SLIDES.map(({title, titlePosition}) => (
+            <Slide key={title} title={title} titlePosition={titlePosition} />
+          ))}
         </Animated.ScrollView>
       </Animated.View>
       <View style={styles.footer}>
         <Animated.View style={[{...StyleSheet.absoluteFillObject}, animationStyle]} />
-        <View style={{flex: 1, backgroundColor: 'white', borderTopLeftRadius: 75}} />
+        <View style={styles.footerSection} />
       </View>
     </View>
   );
@@ -55,7 +56,7 @@ export const Onboarding = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.common.white,
   },
   slider: {
     height: SLIDE_HEIGHT,
@@ -64,4 +65,5 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
   },
+  footerSection: {flex: 1, backgroundColor: theme.palette.common.white, borderTopLeftRadius: 75},
 });
