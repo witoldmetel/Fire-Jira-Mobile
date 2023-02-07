@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Animated, {
   interpolateColor,
@@ -14,6 +14,7 @@ import {theme} from '../../core/theme';
 import {SlideFooter} from './SlideFooter';
 
 export const Onboarding = () => {
+  const scrollViewRef = useRef<Animated.ScrollView>(null);
   const x = useSharedValue(0);
 
   const slideAnimationStyle = useAnimatedStyle(() => ({
@@ -34,12 +35,18 @@ export const Onboarding = () => {
     },
   });
 
-  console.log(x.value);
+  const onPress = (index: number) => {
+    if (scrollViewRef.current) {
+      index += 1;
+      scrollViewRef.current.scrollTo({x: dimensions.screenWidth * index, animated: true});
+    }
+  };
 
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.slider, slideAnimationStyle]}>
         <Animated.ScrollView
+          ref={scrollViewRef}
           horizontal
           snapToInterval={dimensions.screenWidth}
           decelerationRate="fast"
@@ -62,6 +69,7 @@ export const Onboarding = () => {
               description={description}
               x={x}
               isLast={Boolean(SLIDES.length - 1 === index)}
+              onPress={() => onPress(index)}
             />
           ))}
         </Animated.View>
