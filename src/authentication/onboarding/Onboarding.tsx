@@ -16,12 +16,16 @@ import {SlideFooter} from './SlideFooter';
 export const Onboarding = () => {
   const x = useSharedValue(0);
 
-  const animationStyle = useAnimatedStyle(() => ({
+  const slideAnimationStyle = useAnimatedStyle(() => ({
     backgroundColor: interpolateColor(
       x.value,
       SLIDES.map((_, index) => dimensions.screenWidth * index),
       SLIDES.map((slide) => slide.backgroundColor!),
     ),
+  }));
+
+  const footerSectionAnimationStyle = useAnimatedStyle(() => ({
+    transform: [{translateX: x.value * -1}],
   }));
 
   const scrollHandler = useAnimatedScrollHandler({
@@ -30,9 +34,11 @@ export const Onboarding = () => {
     },
   });
 
+  console.log(x.value);
+
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.slider, animationStyle]}>
+      <Animated.View style={[styles.slider, slideAnimationStyle]}>
         <Animated.ScrollView
           horizontal
           snapToInterval={dimensions.screenWidth}
@@ -47,8 +53,8 @@ export const Onboarding = () => {
         </Animated.ScrollView>
       </Animated.View>
       <View style={styles.footer}>
-        <Animated.View style={[{...StyleSheet.absoluteFillObject}, animationStyle]} />
-        <View style={styles.footerSection}>
+        <Animated.View style={[{...StyleSheet.absoluteFillObject}, slideAnimationStyle]} />
+        <Animated.View style={[styles.footerSection, footerSectionAnimationStyle]}>
           {SLIDES.map(({subtitle, description}, index) => (
             <SlideFooter
               key={subtitle}
@@ -58,7 +64,7 @@ export const Onboarding = () => {
               isLast={Boolean(SLIDES.length - 1 === index)}
             />
           ))}
-        </View>
+        </Animated.View>
       </View>
     </View>
   );
@@ -76,5 +82,11 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
   },
-  footerSection: {flex: 1, backgroundColor: theme.palette.common.white, borderTopLeftRadius: 75},
+  footerSection: {
+    flexDirection: 'row',
+    width: dimensions.screenWidth * SLIDES.length,
+    flex: 1,
+    backgroundColor: theme.palette.common.white,
+    borderTopLeftRadius: 75,
+  },
 });

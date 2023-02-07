@@ -11,18 +11,21 @@ interface BoxProps extends React.ComponentProps<typeof View> {
   backgroundColor?: keyof typeof palette;
 }
 
-export const Box = ({padding, margin, backgroundColor, children, ...rest}: BoxProps) => {
+export const Box = ({padding, margin, backgroundColor, children, style, ...rest}: BoxProps) => {
   const theme = useTheme();
 
   return (
     <View
-      style={{
-        margin: margin ? theme.spacing[margin] : theme.spacing.s,
-        padding: padding ? theme.spacing[padding] : theme.spacing.s,
-        backgroundColor: backgroundColor
-          ? (theme.palette[backgroundColor] as ColorValue)
-          : ('transparent' as ColorValue),
-      }}
+      style={[
+        {
+          margin: (margin && theme.spacing[margin]) || 0,
+          padding: (padding && theme.spacing[padding]) || 0,
+          backgroundColor: backgroundColor
+            ? (theme.palette[backgroundColor] as ColorValue)
+            : ('transparent' as ColorValue),
+        },
+        style,
+      ]}
       {...rest}>
       {children}
     </View>
