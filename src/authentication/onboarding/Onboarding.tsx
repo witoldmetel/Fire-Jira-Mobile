@@ -61,24 +61,31 @@ export const Onboarding = () => {
           ))}
         </Animated.ScrollView>
       </Animated.View>
+
       <View style={styles.footer}>
         <Animated.View style={[{...StyleSheet.absoluteFillObject}, slideAnimationStyle]} />
-        <Box style={styles.pagination}>
-          {SLIDES.map((_, index) => (
-            <Dot key={index} index={index} x={x} screenWidth={dimensions.screenWidth} />
-          ))}
-        </Box>
-        <Animated.View style={[styles.footerSection, footerSectionAnimationStyle]}>
-          {SLIDES.map(({subtitle, description}, index) => (
-            <SlideFooter
-              key={subtitle}
-              subtitle={subtitle}
-              description={description}
-              isLast={Boolean(SLIDES.length - 1 === index)}
-              onPress={() => onPress(index)}
-            />
-          ))}
-        </Animated.View>
+        <View style={styles.footerSection}>
+          <Box style={styles.pagination}>
+            {SLIDES.map((_, index) => (
+              <Dot key={index} index={index} x={x} screenWidth={dimensions.screenWidth} />
+            ))}
+          </Box>
+          <Animated.View
+            style={[
+              {flex: 1, flexDirection: 'row', width: dimensions.screenWidth * SLIDES.length},
+              footerSectionAnimationStyle,
+            ]}>
+            {SLIDES.map(({subtitle, description}, index) => (
+              <SlideFooter
+                key={subtitle}
+                subtitle={subtitle}
+                description={description}
+                isLast={Boolean(SLIDES.length - 1 === index)}
+                onPress={() => onPress(index)}
+              />
+            ))}
+          </Animated.View>
+        </View>
       </View>
     </View>
   );
@@ -111,8 +118,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   footerSection: {
-    flexDirection: 'row',
-    width: dimensions.screenWidth * SLIDES.length,
     flex: 1,
     backgroundColor: theme.palette.common.white,
     borderTopLeftRadius: 75,
