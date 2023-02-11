@@ -1,15 +1,12 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 
 import {Box, Button, Text} from '../../core/components';
-
-import type {SharedValue} from 'react-native-reanimated';
-
-import type {SlideType} from './types';
-import {StyleSheet} from 'react-native';
 import {theme} from '../../core/theme';
 
+import type {SlideType} from './types';
+
 type SlideFooterProps = Pick<SlideType, 'subtitle' | 'description'> & {
-  x: SharedValue<number>;
   isLast: boolean;
 
   onPress: () => void;

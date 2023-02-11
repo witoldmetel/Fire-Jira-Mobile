@@ -12,6 +12,8 @@ import {SLIDES} from './constants';
 import {Slide, SLIDE_HEIGHT} from './Slide';
 import {theme} from '../../core/theme';
 import {SlideFooter} from './SlideFooter';
+import {Box} from '../../core/components';
+import {Dot} from './Dot';
 
 export const Onboarding = () => {
   const scrollViewRef = useRef<Animated.ScrollView>(null);
@@ -61,13 +63,17 @@ export const Onboarding = () => {
       </Animated.View>
       <View style={styles.footer}>
         <Animated.View style={[{...StyleSheet.absoluteFillObject}, slideAnimationStyle]} />
+        <Box style={styles.pagination}>
+          {SLIDES.map((_, index) => (
+            <Dot key={index} index={index} x={x} screenWidth={dimensions.screenWidth} />
+          ))}
+        </Box>
         <Animated.View style={[styles.footerSection, footerSectionAnimationStyle]}>
           {SLIDES.map(({subtitle, description}, index) => (
             <SlideFooter
               key={subtitle}
               subtitle={subtitle}
               description={description}
-              x={x}
               isLast={Boolean(SLIDES.length - 1 === index)}
               onPress={() => onPress(index)}
             />
@@ -89,6 +95,20 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 1,
+    position: 'relative',
+  },
+  pagination: {
+    zIndex: 1,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    margin: 'auto',
+    height: 75,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   footerSection: {
     flexDirection: 'row',
