@@ -4,4 +4,5 @@ export type SlideType = {
   subtitle: string;
   description: string;
   backgroundColor?: string;
+  picture: HTMLImageElement;
 };

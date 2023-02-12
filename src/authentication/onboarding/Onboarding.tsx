@@ -8,8 +8,8 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import dimensions from '../../utils/dimensions';
-import {SLIDES} from './constants';
-import {Slide, SLIDE_HEIGHT} from './Slide/Slide';
+import {SLIDES, SLIDE_HEIGHT} from './constants';
+import {Slide} from './Slide/Slide';
 import {theme} from '../../core/theme';
 import {Footer} from './Footer/Footer';
 
@@ -50,8 +50,8 @@ export const Onboarding = () => {
           scrollEventThrottle={1}
           bounces={false}
           onScroll={scrollHandler}>
-          {SLIDES.map(({title, titlePosition}) => (
-            <Slide key={title} title={title} titlePosition={titlePosition} />
+          {SLIDES.map(({title, titlePosition, picture}) => (
+            <Slide key={title} title={title} titlePosition={titlePosition} picture={picture} />
           ))}
         </Animated.ScrollView>
       </Animated.View>

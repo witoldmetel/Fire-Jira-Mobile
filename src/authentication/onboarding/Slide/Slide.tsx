@@ -1,25 +1,25 @@
 import React from 'react';
-import type {StyleProp, TextStyle} from 'react-native';
+import {Image, StyleProp, StyleSheet, TextStyle} from 'react-native';
 
 import {Box, Text} from '../../../core/components';
 import {useTheme} from '../../../hooks/useTheme';
-import dimensions from '../../../utils/dimensions';
 import {getCustomFontSize} from '../../../utils/typography';
+import {SLIDE_HEIGHT, SLIDE_WIDTH} from '../constants';
 
 import type {SlideType} from '../types';
 
-type SlideProps = Pick<SlideType, 'title' | 'titlePosition'>;
+type SlideProps = Pick<SlideType, 'title' | 'titlePosition' | 'picture'>;
 
-export const SLIDE_HEIGHT = 0.65 * dimensions.screenHeight;
-export const SLIDE_WIDTH = dimensions.screenWidth;
-
-export const Slide = ({title, titlePosition}: SlideProps) => {
+export const Slide = ({title, titlePosition, picture}: SlideProps) => {
   const theme = useTheme();
 
   const isTitlePositionRight = titlePosition === 'right' ? -1 : 1;
 
   return (
-    <Box style={{width: SLIDE_WIDTH}}>
+    <Box style={styles.container}>
+      <Box style={styles.pictureWrapper}>
+        <Image source={picture} style={styles.picture} />
+      </Box>
       <Box
         style={{
           transform: [
@@ -43,3 +43,18 @@ export const Slide = ({title, titlePosition}: SlideProps) => {
     </Box>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: SLIDE_WIDTH,
+  },
+  pictureWrapper: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+  },
+  picture: {
+    ...StyleSheet.absoluteFillObject,
+    width: undefined,
+    height: undefined,
+  },
+});
