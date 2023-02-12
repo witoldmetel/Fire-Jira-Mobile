@@ -1,18 +1,18 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
-import {Box, Button, Text} from '../../core/components';
-import {theme} from '../../core/theme';
+import {Box, Button, Text} from '../../../core/components';
+import {theme} from '../../../core/theme';
 
-import type {SlideType} from './types';
+import type {SlideType} from '../types';
 
-type SlideFooterProps = Pick<SlideType, 'subtitle' | 'description'> & {
+type FooterContentProps = Pick<SlideType, 'subtitle' | 'description'> & {
   isLast: boolean;
 
   onPress: () => void;
 };
 
-export const SlideFooter = ({subtitle, description, isLast, onPress}: SlideFooterProps) => {
+export const FooterContent = ({subtitle, description, isLast, onPress}: FooterContentProps) => {
   return (
     <Box style={styles.container}>
       <Text variant="h4" style={styles.subtitle}>

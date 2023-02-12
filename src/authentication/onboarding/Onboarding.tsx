@@ -9,11 +9,9 @@ import Animated, {
 
 import dimensions from '../../utils/dimensions';
 import {SLIDES} from './constants';
-import {Slide, SLIDE_HEIGHT} from './Slide';
+import {Slide, SLIDE_HEIGHT} from './Slide/Slide';
 import {theme} from '../../core/theme';
-import {SlideFooter} from './SlideFooter';
-import {Box} from '../../core/components';
-import {Dot} from './Dot';
+import {Footer} from './Footer/Footer';
 
 export const Onboarding = () => {
   const scrollViewRef = useRef<Animated.ScrollView>(null);
@@ -25,10 +23,6 @@ export const Onboarding = () => {
       SLIDES.map((_, index) => dimensions.screenWidth * index),
       SLIDES.map((slide) => slide.backgroundColor!),
     ),
-  }));
-
-  const footerSectionAnimationStyle = useAnimatedStyle(() => ({
-    transform: [{translateX: x.value * -1}],
   }));
 
   const scrollHandler = useAnimatedScrollHandler({
@@ -61,32 +55,8 @@ export const Onboarding = () => {
           ))}
         </Animated.ScrollView>
       </Animated.View>
-
-      <View style={styles.footer}>
-        <Animated.View style={[{...StyleSheet.absoluteFillObject}, slideAnimationStyle]} />
-        <View style={styles.footerSection}>
-          <Box style={styles.pagination}>
-            {SLIDES.map((_, index) => (
-              <Dot key={index} index={index} x={x} screenWidth={dimensions.screenWidth} />
-            ))}
-          </Box>
-          <Animated.View
-            style={[
-              {flex: 1, flexDirection: 'row', width: dimensions.screenWidth * SLIDES.length},
-              footerSectionAnimationStyle,
-            ]}>
-            {SLIDES.map(({subtitle, description}, index) => (
-              <SlideFooter
-                key={subtitle}
-                subtitle={subtitle}
-                description={description}
-                isLast={Boolean(SLIDES.length - 1 === index)}
-                onPress={() => onPress(index)}
-              />
-            ))}
-          </Animated.View>
-        </View>
-      </View>
+      <Animated.View style={[{...StyleSheet.absoluteFillObject}, slideAnimationStyle]} />
+      <Footer x={x} onPress={onPress} />
     </View>
   );
 };
@@ -97,6 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.palette.common.white,
   },
   slider: {
+    zIndex: 1,
     height: SLIDE_HEIGHT,
     borderBottomRightRadius: 75,
   },

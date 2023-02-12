@@ -6,20 +6,20 @@ import Animated, {
   SharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import {theme} from '../../core/theme';
+
+import {theme} from '../../../core/theme';
+import dimensions from '../../../utils/dimensions';
 
 type DotProps = {
   index: number;
-
   // props needed to get current slide
   x: SharedValue<number>;
-  screenWidth: number;
 };
 
-export function Dot({index, x, screenWidth}: DotProps) {
+export function Dot({index, x}: DotProps) {
   const dotAnimationStyle = useAnimatedStyle(() => ({
     opacity: interpolate(
-      x.value / screenWidth,
+      x.value / dimensions.screenWidth,
       [index - 1, index, index + 1],
       [0.5, 1, 0.5],
       Extrapolate.CLAMP,
@@ -27,7 +27,7 @@ export function Dot({index, x, screenWidth}: DotProps) {
     transform: [
       {
         scale: interpolate(
-          x.value / screenWidth,
+          x.value / dimensions.screenWidth,
           [index - 1, index, index + 1],
           [1, 1.25, 1],
           Extrapolate.CLAMP,
