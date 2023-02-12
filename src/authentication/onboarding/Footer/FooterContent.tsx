@@ -1,21 +1,18 @@
 import React from 'react';
-
-import {Box, Button, Text} from '../../core/components';
-
-import type {SharedValue} from 'react-native-reanimated';
-
-import type {SlideType} from './types';
 import {StyleSheet} from 'react-native';
-import {theme} from '../../core/theme';
 
-type SlideFooterProps = Pick<SlideType, 'subtitle' | 'description'> & {
-  x: SharedValue<number>;
+import {Box, Button, Text} from '../../../core/components';
+import {theme} from '../../../core/theme';
+
+import type {SlideType} from '../types';
+
+type FooterContentProps = Pick<SlideType, 'subtitle' | 'description'> & {
   isLast: boolean;
 
   onPress: () => void;
 };
 
-export const SlideFooter = ({subtitle, description, isLast, onPress}: SlideFooterProps) => {
+export const FooterContent = ({subtitle, description, isLast, onPress}: FooterContentProps) => {
   return (
     <Box style={styles.container}>
       <Text variant="h4" style={styles.subtitle}>

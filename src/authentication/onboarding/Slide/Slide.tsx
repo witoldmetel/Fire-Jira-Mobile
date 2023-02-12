@@ -1,12 +1,12 @@
 import React from 'react';
 import type {StyleProp, TextStyle} from 'react-native';
 
-import {Box, Text} from '../../core/components';
-import {useTheme} from '../../hooks/useTheme';
-import dimensions from '../../utils/dimensions';
-import {getCustomFontSize} from '../../utils/typography';
+import {Box, Text} from '../../../core/components';
+import {useTheme} from '../../../hooks/useTheme';
+import dimensions from '../../../utils/dimensions';
+import {getCustomFontSize} from '../../../utils/typography';
 
-import type {SlideType} from './types';
+import type {SlideType} from '../types';
 
 type SlideProps = Pick<SlideType, 'title' | 'titlePosition'>;
 

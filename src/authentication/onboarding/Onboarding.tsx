@@ -9,9 +9,9 @@ import Animated, {
 
 import dimensions from '../../utils/dimensions';
 import {SLIDES} from './constants';
-import {Slide, SLIDE_HEIGHT} from './Slide';
+import {Slide, SLIDE_HEIGHT} from './Slide/Slide';
 import {theme} from '../../core/theme';
-import {SlideFooter} from './SlideFooter';
+import {Footer} from './Footer/Footer';
 
 export const Onboarding = () => {
   const scrollViewRef = useRef<Animated.ScrollView>(null);
@@ -23,10 +23,6 @@ export const Onboarding = () => {
       SLIDES.map((_, index) => dimensions.screenWidth * index),
       SLIDES.map((slide) => slide.backgroundColor!),
     ),
-  }));
-
-  const footerSectionAnimationStyle = useAnimatedStyle(() => ({
-    transform: [{translateX: x.value * -1}],
   }));
 
   const scrollHandler = useAnimatedScrollHandler({
@@ -59,21 +55,8 @@ export const Onboarding = () => {
           ))}
         </Animated.ScrollView>
       </Animated.View>
-      <View style={styles.footer}>
-        <Animated.View style={[{...StyleSheet.absoluteFillObject}, slideAnimationStyle]} />
-        <Animated.View style={[styles.footerSection, footerSectionAnimationStyle]}>
-          {SLIDES.map(({subtitle, description}, index) => (
-            <SlideFooter
-              key={subtitle}
-              subtitle={subtitle}
-              description={description}
-              x={x}
-              isLast={Boolean(SLIDES.length - 1 === index)}
-              onPress={() => onPress(index)}
-            />
-          ))}
-        </Animated.View>
-      </View>
+      <Animated.View style={[{...StyleSheet.absoluteFillObject}, slideAnimationStyle]} />
+      <Footer x={x} onPress={onPress} />
     </View>
   );
 };
@@ -84,15 +67,28 @@ const styles = StyleSheet.create({
     backgroundColor: theme.palette.common.white,
   },
   slider: {
+    zIndex: 1,
     height: SLIDE_HEIGHT,
     borderBottomRightRadius: 75,
   },
   footer: {
     flex: 1,
+    position: 'relative',
+  },
+  pagination: {
+    zIndex: 1,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    margin: 'auto',
+    height: 75,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   footerSection: {
-    flexDirection: 'row',
-    width: dimensions.screenWidth * SLIDES.length,
     flex: 1,
     backgroundColor: theme.palette.common.white,
     borderTopLeftRadius: 75,
