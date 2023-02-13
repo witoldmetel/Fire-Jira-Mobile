@@ -8,7 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import dimensions from '../../utils/dimensions';
-import {SLIDES, SLIDE_HEIGHT} from './constants';
+import {BORDER_RADIUS, SLIDES, SLIDE_HEIGHT} from './constants';
 import {Slide} from './Slide/Slide';
 import {theme} from '../../core/theme';
 import {Footer} from './Footer/Footer';
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   slider: {
     zIndex: 1,
     height: SLIDE_HEIGHT,
-    borderBottomRightRadius: 75,
+    borderBottomRightRadius: BORDER_RADIUS,
   },
   footer: {
     flex: 1,
@@ -91,6 +91,6 @@ const styles = StyleSheet.create({
   footerSection: {
     flex: 1,
     backgroundColor: theme.palette.common.white,
-    borderTopLeftRadius: 75,
+    borderTopLeftRadius: BORDER_RADIUS,
   },
 });

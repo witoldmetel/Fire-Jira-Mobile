@@ -3,8 +3,9 @@ import {Image, StyleProp, StyleSheet, TextStyle} from 'react-native';
 
 import {Box, Text} from '../../../core/components';
 import {useTheme} from '../../../hooks/useTheme';
+import dimensions from '../../../utils/dimensions';
 import {getCustomFontSize} from '../../../utils/typography';
-import {SLIDE_HEIGHT, SLIDE_WIDTH} from '../constants';
+import {BORDER_RADIUS, SLIDE_HEIGHT, SLIDE_WIDTH} from '../constants';
 
 import type {SlideType} from '../types';
 
@@ -18,7 +19,14 @@ export const Slide = ({title, titlePosition, picture}: SlideProps) => {
   return (
     <Box style={styles.container}>
       <Box style={styles.pictureWrapper}>
-        <Image source={picture} style={styles.picture} />
+        <Image
+          source={picture.src}
+          style={[
+            styles.picture,
+            // Aspect Ratio
+            {height: ((dimensions.screenWidth - BORDER_RADIUS) * picture.height) / picture.width},
+          ]}
+        />
       </Box>
       <Box
         style={{
@@ -53,11 +61,10 @@ const styles = StyleSheet.create({
   },
   pictureWrapper: {
     ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
     justifyContent: 'flex-end',
   },
   picture: {
-    ...StyleSheet.absoluteFillObject,
-    width: undefined,
-    height: undefined,
+    width: dimensions.screenWidth,
   },
 });
