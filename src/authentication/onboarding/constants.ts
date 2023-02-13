@@ -9,7 +9,7 @@ export const SLIDE_WIDTH = dimensions.screenWidth;
 export const SLIDES: SlideType[] = [
   {
     title: 'Visualize',
-    titlePosition: 'right',
+    titlePosition: 'left',
     subtitle: 'Visualize Your Workflow',
     description: 'It helps visualize the actual workflow',
     backgroundColor: theme.palette.chart.blue[2],
