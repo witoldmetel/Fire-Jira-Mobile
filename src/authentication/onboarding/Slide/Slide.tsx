@@ -1,5 +1,6 @@
 import React from 'react';
-import {Image, StyleProp, StyleSheet, TextStyle} from 'react-native';
+import {Animated, Image, StyleProp, StyleSheet, TextStyle} from 'react-native';
+import {Extrapolate, interpolate, SharedValue, useAnimatedStyle} from 'react-native-reanimated';
 
 import {Box, Text} from '../../../core/components';
 import {useTheme} from '../../../hooks/useTheme';
@@ -9,16 +10,35 @@ import {BORDER_RADIUS, SLIDE_HEIGHT, SLIDE_WIDTH} from '../constants';
 
 import type {SlideType} from '../types';
 
-type SlideProps = Pick<SlideType, 'title' | 'titlePosition' | 'picture'>;
+type SlideProps = Pick<SlideType, 'title' | 'titlePosition' | 'picture'> & {
+  index: number;
+  x: SharedValue<number>;
+};
 
-export const Slide = ({title, titlePosition, picture}: SlideProps) => {
+export const Slide = ({title, titlePosition, picture, index, x}: SlideProps) => {
   const theme = useTheme();
 
   const isTitlePositionRight = titlePosition === 'right' ? -1 : 1;
 
+  // @todo: Opacity doesn't work here, need more investigation
+  const imageAnimationStyle = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(
+        x.value,
+        [
+          (index - 1) * dimensions.screenWidth,
+          index * dimensions.screenWidth,
+          (index + 1) * dimensions.screenWidth,
+        ],
+        [0, 1, 0],
+        Extrapolate.CLAMP,
+      ),
+    };
+  });
+
   return (
     <Box style={styles.container}>
-      <Box style={styles.pictureWrapper}>
+      <Animated.View style={[styles.pictureWrapper, imageAnimationStyle]}>
         <Image
           source={picture.src}
           style={[
@@ -27,7 +47,7 @@ export const Slide = ({title, titlePosition, picture}: SlideProps) => {
             {height: ((dimensions.screenWidth - BORDER_RADIUS) * picture.height) / picture.width},
           ]}
         />
-      </Box>
+      </Animated.View>
       <Box
         style={{
           transform: [

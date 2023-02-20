@@ -17,6 +17,12 @@ export const Onboarding = () => {
   const scrollViewRef = useRef<Animated.ScrollView>(null);
   const x = useSharedValue(0);
 
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (e) => {
+      x.value = e.contentOffset.x;
+    },
+  });
+
   const slideAnimationStyle = useAnimatedStyle(() => ({
     backgroundColor: interpolateColor(
       x.value,
@@ -24,12 +30,6 @@ export const Onboarding = () => {
       SLIDES.map((slide) => slide.backgroundColor!),
     ),
   }));
-
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (e) => {
-      x.value = e.contentOffset.x;
-    },
-  });
 
   const onPress = (index: number) => {
     if (scrollViewRef.current) {
@@ -50,8 +50,15 @@ export const Onboarding = () => {
           scrollEventThrottle={1}
           bounces={false}
           onScroll={scrollHandler}>
-          {SLIDES.map(({title, titlePosition, picture}) => (
-            <Slide key={title} title={title} titlePosition={titlePosition} picture={picture} />
+          {SLIDES.map(({title, titlePosition, picture}, index) => (
+            <Slide
+              key={title}
+              title={title}
+              titlePosition={titlePosition}
+              picture={picture}
+              index={index}
+              x={x}
+            />
           ))}
         </Animated.ScrollView>
       </Animated.View>
