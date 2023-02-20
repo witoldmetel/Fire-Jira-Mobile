@@ -12,8 +12,14 @@ import {BORDER_RADIUS, SLIDES, SLIDE_HEIGHT} from './constants';
 import {Slide} from './Slide/Slide';
 import {theme} from '../../core/theme';
 import {Footer} from './Footer/Footer';
+import type {StackNavigationProps} from '../../navigators/types';
+import type {AuthenticationNavigatorRoutes} from '../../navigators/authentication-navigator';
 
-export const Onboarding = () => {
+type OnboardingProps = {
+  navigation: StackNavigationProps<AuthenticationNavigatorRoutes, 'Onboarding'>;
+};
+
+export const Onboarding = ({navigation}: OnboardingProps) => {
   const scrollViewRef = useRef<Animated.ScrollView>(null);
   const x = useSharedValue(0);
 
@@ -63,7 +69,7 @@ export const Onboarding = () => {
         </Animated.ScrollView>
       </Animated.View>
       <Animated.View style={[{...StyleSheet.absoluteFillObject}, slideAnimationStyle]} />
-      <Footer x={x} onPress={onPress} />
+      <Footer x={x} onPress={onPress} navigation={navigation} />
     </View>
   );
 };
