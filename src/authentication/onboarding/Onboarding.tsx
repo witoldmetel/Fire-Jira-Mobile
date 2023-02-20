@@ -8,14 +8,20 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import dimensions from '../../utils/dimensions';
-import {SLIDES} from './constants';
-import {Slide, SLIDE_HEIGHT} from './Slide/Slide';
+import {BORDER_RADIUS, SLIDES, SLIDE_HEIGHT} from './constants';
+import {Slide} from './Slide/Slide';
 import {theme} from '../../core/theme';
 import {Footer} from './Footer/Footer';
 
 export const Onboarding = () => {
   const scrollViewRef = useRef<Animated.ScrollView>(null);
   const x = useSharedValue(0);
+
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (e) => {
+      x.value = e.contentOffset.x;
+    },
+  });
 
   const slideAnimationStyle = useAnimatedStyle(() => ({
     backgroundColor: interpolateColor(
@@ -24,12 +30,6 @@ export const Onboarding = () => {
       SLIDES.map((slide) => slide.backgroundColor!),
     ),
   }));
-
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (e) => {
-      x.value = e.contentOffset.x;
-    },
-  });
 
   const onPress = (index: number) => {
     if (scrollViewRef.current) {
@@ -50,8 +50,15 @@ export const Onboarding = () => {
           scrollEventThrottle={1}
           bounces={false}
           onScroll={scrollHandler}>
-          {SLIDES.map(({title, titlePosition}) => (
-            <Slide key={title} title={title} titlePosition={titlePosition} />
+          {SLIDES.map(({title, titlePosition, picture}, index) => (
+            <Slide
+              key={title}
+              title={title}
+              titlePosition={titlePosition}
+              picture={picture}
+              index={index}
+              x={x}
+            />
           ))}
         </Animated.ScrollView>
       </Animated.View>
@@ -69,7 +76,7 @@ const styles = StyleSheet.create({
   slider: {
     zIndex: 1,
     height: SLIDE_HEIGHT,
-    borderBottomRightRadius: 75,
+    borderBottomRightRadius: BORDER_RADIUS,
   },
   footer: {
     flex: 1,
@@ -91,6 +98,6 @@ const styles = StyleSheet.create({
   footerSection: {
     flex: 1,
     backgroundColor: theme.palette.common.white,
-    borderTopLeftRadius: 75,
+    borderTopLeftRadius: BORDER_RADIUS,
   },
 });
