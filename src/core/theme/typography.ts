@@ -1,4 +1,4 @@
-import dimensions from '../../utils/dimensions';
+import dimensions from '@utils/dimensions';
 
 const FONT_PRIMARY = 'Roboto-Regular';
 

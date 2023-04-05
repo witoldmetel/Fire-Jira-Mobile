@@ -1,5 +1,5 @@
-import {getCustomFontSize} from '../../src/utils/typography';
-import dimensions from '../../src/utils/dimensions';
+import {getCustomFontSize} from '@utils/typography';
+import dimensions from '@utils/dimensions';
 
 describe('getCustomFontSize', () => {
   it('should return a size that is relative to the screen width', () => {

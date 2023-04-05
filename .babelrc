@@ -1,0 +1,26 @@
+{
+  "plugins": [
+    [
+      "module:react-native-dotenv",
+      {
+        "moduleName": "@env",
+        "path": ".env",
+        "safe": false,
+        "allowUndefined": false
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "@components/*": "./src/core/components",
+          "@theme/*": "./src/core/theme",
+          "@contexts/*": "./src/contexts",
+          "@hooks/*": "./src/hooks",
+          "@utils/*": "./src/utils"
+        }
+      }
+    ]
+  ]
+}

@@ -1,5 +1,6 @@
 import React, {createContext, ReactNode} from 'react';
-import {theme, ThemeType} from '../core/theme';
+
+import {theme, ThemeType} from '@theme/index';
 
 type ThemeContextType = ThemeType;
 

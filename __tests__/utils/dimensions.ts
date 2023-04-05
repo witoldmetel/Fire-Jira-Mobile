@@ -1,6 +1,6 @@
 import {Dimensions} from 'react-native';
 
-import dimensions from '../../src/utils/dimensions';
+import dimensions from '@utils/dimensions';
 
 describe('Dimensions', () => {
   it('should get the window width and height', () => {
