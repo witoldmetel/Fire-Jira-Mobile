@@ -1,9 +1,9 @@
 import React from 'react';
 import {ColorValue, View} from 'react-native';
-import {useTheme} from '@hooks/useTheme';
+import {useTheme} from 'hooks/useTheme';
 
-import type {palette} from '@theme/palette';
-import type {spacing} from '@theme/spacing';
+import type {palette} from 'theme/palette';
+import type {spacing} from 'theme/spacing';
 
 interface BoxProps extends React.ComponentProps<typeof View> {
   padding?: keyof typeof spacing;

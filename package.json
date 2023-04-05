@@ -48,9 +48,9 @@
   "jest": {
     "preset": "react-native",
     "testTimeout": 10000,
-    "setupFiles": [
-      "./src/test/test-utils.ts",
-      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    "rootDir": "./__tests__",
+    "modulePaths": [
+      "<rootDir>"
     ],
     "moduleFileExtensions": [
       "ts",

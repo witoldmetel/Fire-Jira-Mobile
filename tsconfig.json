@@ -6,11 +6,11 @@
     /* Completeness */
     "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
     "paths": {                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
-      "@components/*": ["src/core/components/*"],
-      "@theme/*": ["src/core/theme/*"],
-      "@contexts/*": ["src/contexts/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@utils/*": ["src/utils/*"],
+      "components/*": ["src/core/components/*"],
+      "theme/*": ["src/core/theme/*"],
+      "contexts/*": ["src/contexts/*"],
+      "hooks/*": ["src/hooks/*"],
+      "utils/*": ["src/utils/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,

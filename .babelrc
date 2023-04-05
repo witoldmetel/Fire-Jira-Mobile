@@ -14,11 +14,11 @@
       {
         "root": ["./src"],
         "alias": {
-          "@components/*": "./src/core/components",
-          "@theme/*": "./src/core/theme",
-          "@contexts/*": "./src/contexts",
-          "@hooks/*": "./src/hooks",
-          "@utils/*": "./src/utils"
+          "components/*": "./src/core/components",
+          "theme/*": "./src/core/theme",
+          "contexts/*": "./src/contexts",
+          "hooks/*": "./src/hooks",
+          "utils/*": "./src/utils"
         }
       }
     ]
