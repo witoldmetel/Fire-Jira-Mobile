@@ -32,6 +32,10 @@ local.properties
 *.hprof
 .cxx/
 
+# Visual Studio Code
+#
+.vscode/
+
 # node.js
 #
 node_modules/
@@ -63,3 +67,9 @@ buck-out/
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
+
+# coverage
+coverage/
+
+# environment files
+.env

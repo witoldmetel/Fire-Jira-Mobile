@@ -1,8 +1,11 @@
 module.exports = {
   root: true,
-  extends: '@react-native-community',
+  env: {
+    'jest/globals': true,
+  },
+  extends: ['@react-native-community', 'plugin:jest/recommended', 'prettier'],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'jest'],
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
