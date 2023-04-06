@@ -4,11 +4,11 @@ import {Box, Text} from '../../core/components';
 
 import {theme} from '../../core/theme';
 
-export const Welcome = () => {
+export const Login = () => {
   return (
     <View style={styles.container}>
-      <Box>
-        <Box>
+      <Box style={{flex: 1}}>
+        <Box style={{flex: 1}}>
           <Text>Welcome</Text>
         </Box>
       </Box>

@@ -5,7 +5,7 @@ export interface StackNavigationProps<
   ParamList extends ParamListBase,
   RouteName extends keyof ParamList = string,
 > {
-  navigate(arg0: string): unknown;
+  navigate(routeName: string): void;
   navigation: StackNavigationProp<ParamList, RouteName>;
   route: RouteProp<ParamList, RouteName>;
 }
