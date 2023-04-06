@@ -1,15 +1,14 @@
-import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import React from 'react';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import Layout from './src/layouts/Layout';
 
-import {ThemeProvider} from './src/contexts/ThemeContext';
-import {AuthenticationNavigator} from './src/navigators/authentication-navigator';
-
-export default function App() {
+const App = () => {
   return (
-    <ThemeProvider>
-      <NavigationContainer>
-        <AuthenticationNavigator />
-      </NavigationContainer>
-    </ThemeProvider>
+    <NavigationContainer>
+      <Layout />
+    </NavigationContainer>
   );
-}
+};
+
+export default App;

@@ -1,5 +1,5 @@
 {
-  "name": "fire-jira-mobile",
+  "name": "marvel",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,44 +7,61 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx . --max-warnings 0",
-    "tsc": "tsc",
-    "ci": "yarn lint && yarn tsc"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "dependencies": {
-    "@react-native-masked-view/masked-view": "^0.2.8",
-    "@react-navigation/native": "^6.0.13",
-    "@react-navigation/stack": "^6.3.4",
-    "react": "18.1.0",
-    "react-native": "0.70.6",
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/bottom-tabs": "^5.11.9",
+    "@react-navigation/native": "^5.9.4",
+    "@react-navigation/stack": "^5.14.4",
+    "axios": "^0.21.1",
+    "native-base": "^2.15.2",
+    "react": "17.0.1",
+    "react-native": "^0.64.0",
     "react-native-dotenv": "^2.5.5",
-    "react-native-gesture-handler": "^2.8.0",
-    "react-native-reanimated": "^2.14.4",
-    "react-native-safe-area-context": "^4.4.1",
-    "react-native-screens": "^3.18.2"
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-reanimated": "^2.1.0",
+    "react-native-safe-area-context": "^3.2.0",
+    "react-native-screens": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
-    "@react-native-community/eslint-config": "^3.2.0",
-    "@testing-library/react-hooks": "^8.0.1",
-    "@tsconfig/react-native": "^2.0.2",
-    "@types/jest": "^26.0.23",
-    "@types/react": "^18.0.21",
-    "@types/react-native": "^0.70.6",
-    "@types/react-test-renderer": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.37.0",
-    "@typescript-eslint/parser": "^5.37.0",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@testing-library/react-native": "^7.2.0",
+    "@types/jest": "^26.0.22",
+    "@types/react-native": "^0.64.0",
+    "@types/react-test-renderer": "^16.9.2",
     "babel-jest": "^26.6.3",
-    "babel-plugin-module-resolver": "^5.0.0",
-    "eslint": "^8.28.0",
-    "eslint-plugin-import": "^2.26.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "^7.14.0",
     "eslint-plugin-jest": "^24.3.5",
     "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "0.72.3",
-    "prettier": "^2.7.1",
-    "react-test-renderer": "18.1.0",
-    "ts-jest": "^26.1.4",
-    "typescript": "4.8.3"
+    "metro-react-native-babel-preset": "^0.64.0",
+    "prettier": "2.2.1",
+    "react-test-renderer": "17.0.1",
+    "typescript": "^3.8.3"
+  },
+  "resolutions": {
+    "@types/react": "^17"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "/node_modules/(?!native-base)/"
+    ],
+    "setupFiles": [
+      "./jest/setUp.ts",
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }
