@@ -9,13 +9,17 @@ import {SLIDES} from '../constants';
 import {FooterContent} from './FooterContent';
 import {Dot} from './Dot';
 
+import type {StackNavigationProps} from '../../../navigators/types';
+import type {AuthenticationNavigatorRoutes} from '../../../navigators/authentication-navigator';
+
 type FooterProps = {
   x: SharedValue<number>;
+  navigation: StackNavigationProps<AuthenticationNavigatorRoutes, 'Onboarding'>;
 
   onPress: (index: number) => void;
 };
 
-export function Footer({x, onPress}: FooterProps) {
+export function Footer({x, onPress, navigation}: FooterProps) {
   const footerContentAnimationStyle = useAnimatedStyle(() => ({
     flex: 1,
     flexDirection: 'row',
@@ -38,7 +42,9 @@ export function Footer({x, onPress}: FooterProps) {
               subtitle={subtitle}
               description={description}
               isLast={Boolean(SLIDES.length - 1 === index)}
-              onPress={() => onPress(index)}
+              onPress={() => {
+                SLIDES.length - 1 === index ? navigation.navigate('Login') : onPress(index);
+              }}
             />
           ))}
         </Animated.View>
