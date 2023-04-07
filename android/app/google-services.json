@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "925649553379",
+    "firebase_url": "https://fire-jira.firebaseio.com",
+    "project_id": "fire-jira",
+    "storage_bucket": "fire-jira.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:925649553379:android:ce52295c062f2aab7502d6",
+        "android_client_info": {
+          "package_name": "com.firejiramobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "925649553379-ug5ni7vcq22oi50ml5cb23o3nfbtabpa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.firejiramobile",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "925649553379-qpp5s7099r3ueh240engg9rg3cuhch4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDupWVG7NyXuUmA7YCuSxyt4q31_Nfl_dw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "925649553379-qpp5s7099r3ueh240engg9rg3cuhch4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
