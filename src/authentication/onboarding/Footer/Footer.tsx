@@ -43,7 +43,7 @@ export function Footer({x, onPress, navigation}: FooterProps) {
               description={description}
               isLast={Boolean(SLIDES.length - 1 === index)}
               onPress={() => {
-                SLIDES.length - 1 === index ? navigation.navigate('Login') : onPress(index);
+                SLIDES.length - 1 === index ? navigation.navigate('Welcome') : onPress(index);
               }}
             />
           ))}
