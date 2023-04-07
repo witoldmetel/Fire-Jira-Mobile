@@ -1,7 +1,7 @@
 import React, {memo, useState} from 'react';
 import {TouchableOpacity, StyleSheet, View} from 'react-native';
 
-import {Layout, Button, Logo, Text, TextInput, Box} from '../core/components';
+import {Layout, Button, Logo, Text, TextInput, Box, BackButton} from '../core/components';
 import {emailValidator, passwordValidator} from '../utils/validations';
 import {theme} from '../core/theme';
 
@@ -45,48 +45,50 @@ const LoginScreen = ({navigation}: Props) => {
 
   return (
     <Layout>
-      <Button label="Go back" onPress={() => navigation.navigate('Welcome')} />
-      <Logo />
-      <Text variant="h2">Welcome back</Text>
-      <Box style={{backgroundColor: '#F1F9FF', padding: 10, borderRadius: 8}}>
-        <Text variant="subtitle1" style={{textAlign: 'center'}}>
-          Demo email : joedoe@firejira.com / password : firejira
-        </Text>
+      <BackButton onPress={() => navigation.navigate('Welcome')} />
+      <Box style={styles.container} padding="l">
+        <Text variant="h2">Sign in to Fire Jira</Text>
+        <Box style={{backgroundColor: '#F1F9FF', padding: 10, borderRadius: 8}}>
+          <Text variant="subtitle1" style={{textAlign: 'center'}}>
+            Demo email : joedoe@firejira.com / password : firejira
+          </Text>
+        </Box>
+        <TextInput
+          placeholder="Email address"
+          value={email.value}
+          onChangeText={(text) => setEmail({value: text, error: ''})}
+          errorText={email.error}
+          autoCapitalize="none"
+          textContentType="emailAddress"
+          keyboardType="email-address"
+        />
+        <TextInput
+          placeholder="Password"
+          value={password.value}
+          onChangeText={(text) => setPassword({value: text, error: ''})}
+          errorText={password.error}
+          secureTextEntry
+          autoCapitalize="none"
+        />
+        <View style={styles.forgotPassword}>
+          <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+            <Text style={styles.label}>Forgot your password?</Text>
+          </TouchableOpacity>
+        </View>
+        <Button label="Login" onPress={_onLoginPressed} />
+        <View style={styles.row}>
+          <Text style={styles.label}>Don’t have an account? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+            <Text style={styles.link}>Sign up</Text>
+          </TouchableOpacity>
+        </View>
       </Box>
-      <TextInput
-        placeholder="Email"
-        value={email.value}
-        onChangeText={(text) => setEmail({value: text, error: ''})}
-        errorText={email.error}
-        autoCapitalize="none"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-      />
-      <TextInput
-        placeholder="Password"
-        value={password.value}
-        onChangeText={(text) => setPassword({value: text, error: ''})}
-        errorText={password.error}
-        secureTextEntry
-        autoCapitalize="none"
-      />
-      <View style={styles.forgotPassword}>
-        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
-          <Text style={styles.label}>Forgot your password?</Text>
-        </TouchableOpacity>
-      </View>
-      <Button label="Login" onPress={_onLoginPressed} />
-      <View style={styles.row}>
-        <Text style={styles.label}>Don’t have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-          <Text style={styles.link}>Sign up</Text>
-        </TouchableOpacity>
-      </View>
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
   forgotPassword: {
     width: '100%',
     alignItems: 'flex-end',

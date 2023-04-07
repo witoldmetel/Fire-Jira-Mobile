@@ -23,7 +23,12 @@ export const FooterContent = ({subtitle, description, isLast, onPress}: FooterCo
       </Text>
       <Button
         label={isLast ? "Let's Started" : 'Next'}
-        style={{backgroundColor: isLast ? theme.palette.success.light : theme.palette.grey[300]}}
+        style={[
+          styles.button,
+          {
+            backgroundColor: isLast ? theme.palette.success.light : theme.palette.grey[300],
+          },
+        ]}
         onPress={onPress}
       />
     </Box>
@@ -36,6 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  button: {width: 245},
   subtitle: {
     marginBottom: 12,
   },
