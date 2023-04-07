@@ -1,5 +1,6 @@
 import React from 'react';
 import {ColorValue, StyleProp, Text as RNText, TextStyle} from 'react-native';
+
 import {useTheme} from '../../../hooks/useTheme';
 
 import type {palette} from '../../theme/palette';

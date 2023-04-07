@@ -2,13 +2,13 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {ThemeProvider} from './src/contexts/ThemeContext';
-import {AuthenticationNavigator} from './src/navigators/authentication-navigator';
+import {MainNavigator} from './src/navigators';
 
 export default function App() {
   return (
     <ThemeProvider>
       <NavigationContainer>
-        <AuthenticationNavigator />
+        <MainNavigator />
       </NavigationContainer>
     </ThemeProvider>
   );
