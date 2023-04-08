@@ -4,13 +4,16 @@ import {TouchableOpacity, StyleSheet, View} from 'react-native';
 import {Layout, Button, Text, TextInput, Box, BackButton} from '../core/components';
 import {emailValidator, passwordValidator} from '../utils/validations';
 import {theme} from '../core/theme';
-import {loginUser} from '../api/auth-api';
+import {signInUser} from '../api/auth-api';
 
-type Props = {
-  navigation: any;
+import type {StackNavigationProps} from '../navigators/types';
+import type {MainNavigatorRoutes} from '../navigators';
+
+type RegisterScreenProps = {
+  // @todo: Refactor navigators
+  navigation: StackNavigationProps<MainNavigatorRoutes, 'Register'>;
 };
-
-const RegisterScreen = ({navigation}: Props) => {
+const RegisterScreen = ({navigation}: RegisterScreenProps) => {
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
   console.log('file: RegisterScreen.tsx:15 ~ RegisterScreen ~ email:', email);
@@ -34,13 +37,15 @@ const RegisterScreen = ({navigation}: Props) => {
 
     setLoading(true);
 
-    const response = await loginUser({
+    const response = await signInUser({
       email: email.value,
       password: password.value,
     });
 
-    if (response?.error) {
-      setError(response?.error);
+    if (!response?.error) {
+      navigation.navigate('Home');
+    } else {
+      setError(response.error);
     }
 
     setLoading(false);
