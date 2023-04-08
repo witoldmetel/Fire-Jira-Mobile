@@ -6,6 +6,7 @@ import {
   WelcomeScreen,
   LoginScreen,
   RegisterScreen,
+  HomeScreen,
 } from '../screens';
 
 export type MainNavigatorRoutes = {
@@ -14,16 +15,19 @@ export type MainNavigatorRoutes = {
   Welcome: undefined;
   Login: undefined;
   Register: undefined;
+  Home: undefined;
 };
 
 const MainStack = createStackNavigator<MainNavigatorRoutes>();
 
 export const MainNavigator = () => (
-  <MainStack.Navigator screenOptions={{headerShown: false}}>
+  // @todo: Initial screen should be AuthLoading
+  <MainStack.Navigator screenOptions={{headerShown: false}} initialRouteName="Onboarding">
     <MainStack.Screen name="Onboarding" component={OnboardingScreen} />
     <MainStack.Screen name="AuthLoading" component={AuthLoadingScreen} />
     <MainStack.Screen name="Welcome" component={WelcomeScreen} />
     <MainStack.Screen name="Login" component={LoginScreen} />
     <MainStack.Screen name="Register" component={RegisterScreen} />
+    <MainStack.Screen name="Home" component={HomeScreen} />
   </MainStack.Navigator>
 );

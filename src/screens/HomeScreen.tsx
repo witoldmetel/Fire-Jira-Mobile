@@ -3,7 +3,7 @@ import React, {memo} from 'react';
 import {logoutUser} from '../api/auth-api';
 import {Layout, Text, Button, Logo} from '../core/components';
 
-const Dashboard = () => (
+const HomeScreen = () => (
   <Layout>
     <Logo />
     <Text>Let’s start</Text>
@@ -14,4 +14,4 @@ const Dashboard = () => (
   </Layout>
 );
 
-export default memo(Dashboard);
+export default memo(HomeScreen);

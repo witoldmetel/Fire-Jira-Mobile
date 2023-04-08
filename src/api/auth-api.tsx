@@ -1,14 +1,19 @@
 import auth from '@react-native-firebase/auth';
 
+type AuthDetails = {
+  email: string;
+  password: string;
+};
+
 export const logoutUser = () => {
   auth()
     .signOut()
     .then(() => console.log('User signed out!'));
 };
 
-export const signInUser = async ({email, password}: {email: string; password: string}) => {
+export const signInUser = async ({email, password}: AuthDetails) => {
   try {
-    auth()
+    await auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
         console.log('User account created & signed in!');
@@ -52,8 +57,14 @@ export const signInUser = async ({email, password}: {email: string; password: st
 
 export const loginUser = async ({email, password}: AuthDetails) => {
   try {
-    await firebase.auth().signInWithEmailAndPassword(email, password);
-    return {};
+    await auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log('User signed in!');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   } catch (error) {
     switch (error.code) {
       case 'auth/invalid-email':
