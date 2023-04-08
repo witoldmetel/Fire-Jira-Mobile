@@ -8,12 +8,12 @@ import {theme} from '../core/theme';
 import type {StackNavigationProps} from '../navigators/types';
 import type {MainNavigatorRoutes} from '../navigators';
 
-type Props = {
+type AuthLoadingScreenProps = {
   // @todo: Refactor navigators
   navigation: StackNavigationProps<MainNavigatorRoutes, 'AuthLoading'>;
 };
 
-const AuthLoadingScreen = ({navigation}: Props) => {
+const AuthLoadingScreen = ({navigation}: AuthLoadingScreenProps) => {
   // @todo: Move to context
   const [user, setUser] = useState();
 

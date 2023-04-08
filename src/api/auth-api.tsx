@@ -5,10 +5,8 @@ type AuthDetails = {
   password: string;
 };
 
-export const logoutUser = () => {
-  auth()
-    .signOut()
-    .then(() => console.log('User signed out!'));
+export const logoutUser = async () => {
+  await auth().signOut();
 };
 
 export const signInUser = async ({email, password}: AuthDetails) => {
