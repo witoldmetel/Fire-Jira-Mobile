@@ -1,17 +1,24 @@
 import React, {memo} from 'react';
+import {StyleSheet} from 'react-native';
 
 import {logoutUser} from '../api/auth-api';
-import {Layout, Text, Button, Logo} from '../core/components';
+import {Layout, Button, Logo, Box} from '../core/components';
 
-const HomeScreen = () => (
+const HomeScreen = ({navigation}: {navigation: any}) => (
   <Layout>
-    <Logo />
-    <Text>Let’s start</Text>
-    <Text>
-      Your amazing app starts here. Open you favourite code editor and start editing this project.
-    </Text>
-    <Button label="Logout" onPress={() => logoutUser()} />
+    <Box style={styles.container} padding="l">
+      <Logo />
+      <Button
+        label="Logout"
+        onPress={() => logoutUser().then(() => navigation.navigate('Welcome'))}
+        variant="outlined"
+      />
+    </Box>
   </Layout>
 );
+
+const styles = StyleSheet.create({
+  container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+});
 
 export default memo(HomeScreen);

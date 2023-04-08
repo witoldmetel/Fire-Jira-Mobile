@@ -38,7 +38,7 @@ export function Button({
       style={({pressed}) => [
         styles.button,
         variant === 'contained' && {
-          backgroundColor: disabled ? theme.palette.action.disabled : theme.palette.primary.main,
+          backgroundColor: disabled ? theme.palette.grey[300] : theme.palette.primary.main,
           opacity: disabled ? 0.45 : 1,
         },
         variant === 'outlined' && {

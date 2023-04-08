@@ -6,15 +6,19 @@ import {emailValidator, passwordValidator} from '../utils/validations';
 import {theme} from '../core/theme';
 import {loginUser} from '../api/auth-api';
 
-type Props = {
-  navigation: any;
+import type {StackNavigationProps} from '../navigators/types';
+import type {MainNavigatorRoutes} from '../navigators';
+
+type LoginScreenProps = {
+  // @todo: Refactor navigators
+  navigation: StackNavigationProps<MainNavigatorRoutes, 'Login'>;
 };
 
-const LoginScreen = ({navigation}: Props) => {
+const LoginScreen = ({navigation}: LoginScreenProps) => {
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [_, setError] = useState('');
 
   const onLoginPress = async () => {
     if (loading) {
@@ -37,7 +41,9 @@ const LoginScreen = ({navigation}: Props) => {
       password: password.value,
     });
 
-    if (response.error) {
+    if (!response?.error) {
+      navigation.navigate('Home');
+    } else {
       setError(response.error);
     }
 
