@@ -5,6 +5,7 @@ import {
   AuthLoadingScreen,
   WelcomeScreen,
   LoginScreen,
+  ForgotPasswordScreen,
   RegisterScreen,
   HomeScreen,
 } from '../screens';
@@ -14,6 +15,7 @@ export type MainNavigatorRoutes = {
   AuthLoading: undefined;
   Welcome: undefined;
   Login: undefined;
+  ForgotPassword: undefined;
   Register: undefined;
   Home: undefined;
 };
@@ -27,6 +29,7 @@ export const MainNavigator = () => (
     <MainStack.Screen name="AuthLoading" component={AuthLoadingScreen} />
     <MainStack.Screen name="Welcome" component={WelcomeScreen} />
     <MainStack.Screen name="Login" component={LoginScreen} />
+    <MainStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     <MainStack.Screen name="Register" component={RegisterScreen} />
     <MainStack.Screen name="Home" component={HomeScreen} />
   </MainStack.Navigator>

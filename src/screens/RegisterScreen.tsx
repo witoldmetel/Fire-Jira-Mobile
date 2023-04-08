@@ -16,8 +16,6 @@ type RegisterScreenProps = {
 const RegisterScreen = ({navigation}: RegisterScreenProps) => {
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
-  console.log('file: RegisterScreen.tsx:15 ~ RegisterScreen ~ email:', email);
-  console.log('file: RegisterScreen.tsx:16 ~ RegisterScreen ~ password:', password);
   const [loading, setLoading] = useState(false);
   const [_, setError] = useState('');
 
@@ -80,7 +78,7 @@ const RegisterScreen = ({navigation}: RegisterScreenProps) => {
           label="Register"
           onPress={onRegisterPress}
           style={styles.registerButton}
-          disabled={!email.value && !password.value}
+          disabled={!(email.value && password.value)}
         />
         <View style={styles.row}>
           <Text>Already have an account? </Text>
@@ -97,18 +95,6 @@ const styles = StyleSheet.create({
   container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
   subtitle: {
     marginVertical: 12,
-  },
-  demoContainer: {
-    backgroundColor: '#F1F9FF',
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 12,
-    width: '100%',
-  },
-  forgotPassword: {
-    width: '100%',
-    alignItems: 'flex-end',
-    marginBottom: 24,
   },
   registerButton: {
     borderRadius: 8,

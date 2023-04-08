@@ -85,3 +85,28 @@ export const loginUser = async ({email, password}: AuthDetails) => {
     }
   }
 };
+
+export const sendEmailWithPassword = async (email: string) => {
+  try {
+    await auth().sendPasswordResetEmail(email);
+  } catch (error) {
+    switch (error.code) {
+      case 'auth/invalid-email':
+        return {
+          error: 'Invalid email address format.',
+        };
+      case 'auth/user-not-found':
+        return {
+          error: 'User with this email does not exist.',
+        };
+      case 'auth/too-many-requests':
+        return {
+          error: 'Too many request. Try again in a minute.',
+        };
+      default:
+        return {
+          error: 'Check your internet connection.',
+        };
+    }
+  }
+};
