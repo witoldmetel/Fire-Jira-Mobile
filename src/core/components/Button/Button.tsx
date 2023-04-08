@@ -37,7 +37,6 @@ export function Button({
       disabled={disabled}
       style={({pressed}) => [
         styles.button,
-        {opacity: pressed ? 0.75 : 1},
         variant === 'contained' && {
           backgroundColor: disabled ? theme.palette.action.disabled : theme.palette.primary.main,
           opacity: disabled ? 0.45 : 1,
@@ -48,6 +47,7 @@ export function Button({
           backgroundColor: disabled ? theme.palette.action.disabled : theme.palette.common.white,
           opacity: disabled ? 0.45 : 1,
         },
+        {opacity: pressed ? 0.75 : 1},
         style,
       ]}>
       {children ?? (
