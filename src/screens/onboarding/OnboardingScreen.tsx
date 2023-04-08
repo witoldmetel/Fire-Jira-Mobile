@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {memo, useRef} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Animated, {
   interpolateColor,
@@ -13,13 +13,13 @@ import {Slide} from './Slide/Slide';
 import {theme} from '../../core/theme';
 import {Footer} from './Footer/Footer';
 import type {StackNavigationProps} from '../../navigators/types';
-import type {AuthenticationNavigatorRoutes} from '../../navigators/authentication-navigator';
+import type {MainNavigatorRoutes} from '../../navigators';
 
 type OnboardingProps = {
-  navigation: StackNavigationProps<AuthenticationNavigatorRoutes, 'Onboarding'>;
+  navigation: StackNavigationProps<MainNavigatorRoutes, 'Onboarding'>;
 };
 
-export const Onboarding = ({navigation}: OnboardingProps) => {
+const OnboardingScreen = ({navigation}: OnboardingProps) => {
   const scrollViewRef = useRef<Animated.ScrollView>(null);
   const x = useSharedValue(0);
 
@@ -107,3 +107,5 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: BORDER_RADIUS,
   },
 });
+
+export default memo(OnboardingScreen);

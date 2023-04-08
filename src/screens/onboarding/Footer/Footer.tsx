@@ -10,11 +10,11 @@ import {FooterContent} from './FooterContent';
 import {Dot} from './Dot';
 
 import type {StackNavigationProps} from '../../../navigators/types';
-import type {AuthenticationNavigatorRoutes} from '../../../navigators/authentication-navigator';
+import type {MainNavigatorRoutes} from '../../../navigators';
 
 type FooterProps = {
   x: SharedValue<number>;
-  navigation: StackNavigationProps<AuthenticationNavigatorRoutes, 'Onboarding'>;
+  navigation: StackNavigationProps<MainNavigatorRoutes, 'Onboarding'>;
 
   onPress: (index: number) => void;
 };
