@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {View, StyleSheet, Text, TextInput as Input} from 'react-native';
+import {TextInput as Input, StyleSheet, Text, View} from 'react-native';
 
 import {theme} from '../../theme';
 
