@@ -2,7 +2,7 @@ import React, {memo} from 'react';
 import {StyleSheet} from 'react-native';
 
 import {logoutUser} from '../api/auth-api';
-import {Layout, Button, Logo, Box} from '../core/components';
+import {Box, Button, Layout, Logo} from '../core/components';
 
 const HomeScreen = ({navigation}: {navigation: any}) => (
   <Layout>

@@ -4,9 +4,8 @@ import auth from '@react-native-firebase/auth';
 
 import {Box, Layout} from '../core/components';
 import {theme} from '../core/theme';
-
-import type {StackNavigationProps} from '../navigators/types';
 import type {MainNavigatorRoutes} from '../navigators';
+import type {StackNavigationProps} from '../navigators/types';
 
 type AuthLoadingScreenProps = {
   // @todo: Refactor navigators

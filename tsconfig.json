@@ -5,6 +5,11 @@
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Completeness */
+    "baseUrl": ".",
+    "paths": {
+      "~": ["src/*"],
+      "~/utils/*": ["src/utils/*"],
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "noEmit": true,
@@ -28,7 +33,7 @@
     "strictPropertyInitialization": true, /* Enable strict checking of property initialization in classes. */
     "noImplicitThis": true, /* Raise error on 'this' expressions with an implied 'any' type. */
     "alwaysStrict": true, /* Parse in strict mode and emit "use strict" for each source file. */
-    "importsNotUsedAsValues": "error",
   },
+  "include": [".eslintrc.js", ".prettierrc.js"],
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }

@@ -1,13 +1,12 @@
 import React, {memo, useState} from 'react';
-import {TouchableOpacity, StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 
-import {Layout, Button, Text, TextInput, Box, BackButton} from '../core/components';
-import {emailValidator, passwordValidator} from '../utils/validations';
-import {theme} from '../core/theme';
 import {loginUser} from '../api/auth-api';
-
-import type {StackNavigationProps} from '../navigators/types';
+import {BackButton, Box, Button, Layout, Text, TextInput} from '../core/components';
+import {theme} from '../core/theme';
 import type {MainNavigatorRoutes} from '../navigators';
+import type {StackNavigationProps} from '../navigators/types';
+import {emailValidator, passwordValidator} from '../utils/validations';
 
 type LoginScreenProps = {
   // @todo: Refactor navigators

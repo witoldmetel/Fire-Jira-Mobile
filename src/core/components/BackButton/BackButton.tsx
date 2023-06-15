@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 
 type BackButtonProps = {
   onPress: () => void;

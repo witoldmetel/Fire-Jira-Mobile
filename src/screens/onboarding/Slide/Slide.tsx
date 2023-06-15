@@ -5,9 +5,7 @@ import {Extrapolate, interpolate, SharedValue, useAnimatedStyle} from 'react-nat
 import {Box, Text} from '../../../core/components';
 import {useTheme} from '../../../hooks/useTheme';
 import dimensions from '../../../utils/dimensions';
-import {getCustomFontSize} from '../../../utils/typography';
 import {BORDER_RADIUS, SLIDE_HEIGHT, SLIDE_WIDTH} from '../constants';
-
 import type {SlideType} from '../types';
 
 type SlideProps = Pick<SlideType, 'title' | 'titlePosition' | 'picture'> & {
