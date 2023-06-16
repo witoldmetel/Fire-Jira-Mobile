@@ -2,15 +2,14 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Animated, {SharedValue, useAnimatedStyle} from 'react-native-reanimated';
 
-import dimensions from '../../../utils/dimensions';
-import {theme} from '../../../core/theme';
 import {Box} from '../../../core/components';
-import {SLIDES} from '../constants';
-import {FooterContent} from './FooterContent';
-import {Dot} from './Dot';
-
-import type {StackNavigationProps} from '../../../navigators/types';
+import {theme} from '../../../core/theme';
 import type {MainNavigatorRoutes} from '../../../navigators';
+import type {StackNavigationProps} from '../../../navigators/types';
+import dimensions from '../../../utils/dimensions';
+import {SLIDES} from '../constants';
+import {Dot} from './Dot';
+import {FooterContent} from './FooterContent';
 
 type FooterProps = {
   x: SharedValue<number>;

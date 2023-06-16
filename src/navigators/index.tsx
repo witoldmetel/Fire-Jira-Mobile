@@ -1,13 +1,14 @@
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+
 import {
-  OnboardingScreen,
   AuthLoadingScreen,
-  WelcomeScreen,
-  LoginScreen,
   ForgotPasswordScreen,
-  RegisterScreen,
   HomeScreen,
+  LoginScreen,
+  OnboardingScreen,
+  RegisterScreen,
+  WelcomeScreen,
 } from '../screens';
 
 export type MainNavigatorRoutes = {

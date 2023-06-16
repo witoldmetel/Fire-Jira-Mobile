@@ -1,12 +1,11 @@
 import React, {memo, useState} from 'react';
 import {StyleSheet} from 'react-native';
 
-import {Layout, Button, Text, TextInput, Box, BackButton} from '../core/components';
-import {emailValidator} from '../utils/validations';
 import {sendEmailWithPassword} from '../api/auth-api';
-
-import type {StackNavigationProps} from '../navigators/types';
+import {BackButton, Box, Button, Layout, Text, TextInput} from '../core/components';
 import type {MainNavigatorRoutes} from '../navigators';
+import type {StackNavigationProps} from '../navigators/types';
+import {emailValidator} from '../utils/validations';
 
 type ForgotPasswordScreenProps = {
   // @todo: Refactor navigators

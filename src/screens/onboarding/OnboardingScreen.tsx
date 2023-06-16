@@ -7,13 +7,13 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 
-import dimensions from '../../utils/dimensions';
-import {BORDER_RADIUS, SLIDES, SLIDE_HEIGHT} from './constants';
-import {Slide} from './Slide/Slide';
 import {theme} from '../../core/theme';
-import {Footer} from './Footer/Footer';
-import type {StackNavigationProps} from '../../navigators/types';
 import type {MainNavigatorRoutes} from '../../navigators';
+import type {StackNavigationProps} from '../../navigators/types';
+import dimensions from '../../utils/dimensions';
+import {BORDER_RADIUS, SLIDE_HEIGHT, SLIDES} from './constants';
+import {Footer} from './Footer/Footer';
+import {Slide} from './Slide/Slide';
 
 type OnboardingProps = {
   navigation: StackNavigationProps<MainNavigatorRoutes, 'Onboarding'>;

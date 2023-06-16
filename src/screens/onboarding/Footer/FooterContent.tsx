@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 
 import {Box, Button, Text} from '../../../core/components';
 import {theme} from '../../../core/theme';
-
 import type {SlideType} from '../types';
 
 type FooterContentProps = Pick<SlideType, 'subtitle' | 'description'> & {

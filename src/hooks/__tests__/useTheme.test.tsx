@@ -1,9 +1,9 @@
 import React from 'react';
 import {renderHook} from '@testing-library/react-hooks';
 
-import {ThemeProvider} from '../../src/contexts/ThemeContext';
-import {theme} from '../../src/core/theme';
-import {useTheme} from '../../src/hooks/useTheme';
+import {ThemeProvider} from '../../contexts/ThemeContext';
+import {theme} from '../../core/theme';
+import {useTheme} from '../../hooks/useTheme';
 
 // Define the type for the wrapper component
 type WrapperProps = {

@@ -1,6 +1,5 @@
 import {theme} from '../../core/theme';
 import dimensions from '../../utils/dimensions';
-
 import type {SlideType} from './types';
 
 export const SLIDE_HEIGHT = 0.65 * dimensions.screenHeight;

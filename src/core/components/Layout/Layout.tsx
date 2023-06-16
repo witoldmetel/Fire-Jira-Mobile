@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {StyleSheet, KeyboardAvoidingView} from 'react-native';
+import {KeyboardAvoidingView, StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {theme} from '../../theme';

@@ -15,6 +15,7 @@ type AuthLoadingScreenProps = {
 const AuthLoadingScreen = ({navigation}: AuthLoadingScreenProps) => {
   // @todo: Move to context
   const [user, setUser] = useState();
+  console.log('file: AuthLoadingScreen.tsx:18 ~ AuthLoadingScreen ~ user:', user);
 
   // @todo: Handle onboarding screen
   function onAuthStateChanged(user) {
@@ -33,6 +34,7 @@ const AuthLoadingScreen = ({navigation}: AuthLoadingScreenProps) => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
 
     return subscriber; // unsubscribe on unmount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

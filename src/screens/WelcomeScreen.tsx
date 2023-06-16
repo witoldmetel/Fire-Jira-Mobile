@@ -1,10 +1,9 @@
 import React, {memo} from 'react';
 import {StyleSheet} from 'react-native';
 
-import {Text, Button, Layout, Logo, Box} from '../core/components';
-
-import type {StackNavigationProps} from '../navigators/types';
+import {Box, Button, Layout, Logo, Text} from '../core/components';
 import type {MainNavigatorRoutes} from '../navigators';
+import type {StackNavigationProps} from '../navigators/types';
 
 type WelcomeScreenProps = {
   navigation: StackNavigationProps<MainNavigatorRoutes, 'Welcome'>;

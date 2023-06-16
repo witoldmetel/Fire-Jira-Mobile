@@ -4,7 +4,6 @@ module.exports = function (api) {
   return {
     presets: ['module:metro-react-native-babel-preset'],
     plugins: [
-      'react-native-reanimated/plugin',
       [
         'module-resolver',
         {
@@ -13,6 +12,7 @@ module.exports = function (api) {
           },
         },
       ],
+      'react-native-reanimated/plugin', // needs to be last
     ],
   };
 };

@@ -8,8 +8,8 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import {Text} from '../Text/Text';
 import {theme} from '../../theme';
+import {Text} from '../Text/Text';
 
 type ButtonProps = {
   label: string;
