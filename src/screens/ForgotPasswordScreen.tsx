@@ -3,15 +3,9 @@ import {StyleSheet} from 'react-native';
 
 import {sendEmailWithPassword} from '../api/auth-api';
 import {BackButton, Box, Button, Layout, Text, TextInput} from '../core/components';
-import type {MainNavigatorRoutes} from '../navigators';
-import type {StackNavigationProps} from '../navigators/types';
 import {emailValidator} from '../utils/validations';
 
-type ForgotPasswordScreenProps = {
-  // @todo: Refactor navigators
-  navigation: StackNavigationProps<MainNavigatorRoutes, 'ForgotPassword'>;
-};
-const ForgotPasswordScreen = ({navigation}: ForgotPasswordScreenProps) => {
+const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState({value: '', error: ''});
   const [loading, setLoading] = useState(false);
 
@@ -42,7 +36,7 @@ const ForgotPasswordScreen = ({navigation}: ForgotPasswordScreenProps) => {
 
   return (
     <Layout>
-      <BackButton onPress={() => navigation.navigate('Welcome')} />
+      <BackButton />
       <Box style={styles.container} padding="l">
         <Text variant="h3">Forgot your password?</Text>
         <Text variant="subtitle2" style={styles.subtitle}>

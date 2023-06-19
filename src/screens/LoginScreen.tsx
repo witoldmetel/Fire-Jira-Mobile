@@ -51,7 +51,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
 
   return (
     <Layout>
-      <BackButton onPress={() => navigation.navigate('Welcome')} />
+      <BackButton />
       <Box style={styles.container} padding="l">
         <Text variant="h2">Sign in to Fire Jira</Text>
         <Text variant="subtitle2" style={styles.subtitle}>

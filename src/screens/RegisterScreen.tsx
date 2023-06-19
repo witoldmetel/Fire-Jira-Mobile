@@ -12,6 +12,7 @@ type RegisterScreenProps = {
   // @todo: Refactor navigators
   navigation: StackNavigationProps<MainNavigatorRoutes, 'Register'>;
 };
+
 const RegisterScreen = ({navigation}: RegisterScreenProps) => {
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
@@ -50,7 +51,7 @@ const RegisterScreen = ({navigation}: RegisterScreenProps) => {
 
   return (
     <Layout>
-      <BackButton onPress={() => navigation.navigate('Welcome')} />
+      <BackButton />
       <Box style={styles.container} padding="l">
         <Text variant="h3">Get started absolutely free.</Text>
         <Text variant="subtitle2" style={styles.subtitle}>
