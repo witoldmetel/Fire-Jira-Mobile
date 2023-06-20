@@ -5,20 +5,17 @@ import Animated, {
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withTiming,
 } from 'react-native-reanimated';
 import Svg, {ClipPath, Ellipse, Image} from 'react-native-svg';
 
 import {Box, Button, Logo, Text} from '../core/components';
-import type {MainNavigatorRoutes} from '../navigators';
-import type {StackNavigationProps} from '../navigators/types';
+import LoginForm from './forms/LoginForm';
 
-type WelcomeScreenProps = {
-  navigation: StackNavigationProps<MainNavigatorRoutes, 'Welcome'>;
-};
+const {width, height} = Dimensions.get('window');
 
-const WelcomeScreen = ({navigation}: WelcomeScreenProps) => {
-  const {height, width} = Dimensions.get('window');
+const WelcomeScreen = () => {
   const imagePosition = useSharedValue(1);
   const [isLoginPressed, setIsLoginPressed] = useState(false);
 
@@ -45,6 +42,15 @@ const WelcomeScreen = ({navigation}: WelcomeScreenProps) => {
     return {
       opacity: withTiming(imagePosition.value === 1 ? 0 : 1, {duration: 800}),
       transform: [{rotate: withTiming(interpolation + 'deg', {duration: 1000})}],
+    };
+  });
+
+  const formAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity:
+        imagePosition.value === 0
+          ? withDelay(400, withTiming(1, {duration: 800}))
+          : withTiming(0, {duration: 300}),
     };
   });
 
@@ -79,14 +85,14 @@ const WelcomeScreen = ({navigation}: WelcomeScreenProps) => {
         </Text>
       </View>
       <Animated.View style={[StyleSheet.absoluteFill, imageAnimatedStyle]}>
-        <Svg height={height + 50} width={width}>
+        <Svg height={height + 25} width={width}>
           <ClipPath id="clipPathId">
-            <Ellipse cx={width / 2} rx={height} ry={height + 50} />
+            <Ellipse cx={width / 2} rx={height} ry={height + 25} />
           </ClipPath>
           <Image
             href={require('../../assets/images/overlay.png')}
-            height={height + 50}
-            width={width + 50}
+            height={height + 25}
+            width={width + 25}
             preserveAspectRatio="xMidYMid slice"
             clipPath="url(#clipPathId)"
           />
@@ -113,6 +119,9 @@ const WelcomeScreen = ({navigation}: WelcomeScreenProps) => {
             onPress={registerHandler}
           />
         </Animated.View>
+        <Animated.View style={[StyleSheet.absoluteFill, styles.formContainer, formAnimatedStyle]}>
+          <LoginForm />
+        </Animated.View>
       </View>
     </Box>
   );
@@ -127,11 +136,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 1,
-    height: '50%',
+    height: height / 2,
   },
   bottomSection: {
     alignItems: 'center',
     justifyContent: 'center',
+    height: height / 3,
   },
   textStyle: {
     color: '#fff',
@@ -156,6 +166,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
     top: -20,
+  },
+  formContainer: {
+    marginBottom: 70,
+    zIndex: -1,
+    justifyContent: 'center',
   },
 });
 
