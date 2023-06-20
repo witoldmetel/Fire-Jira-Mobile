@@ -1,5 +1,5 @@
 import React, {memo, useState} from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {Dimensions, Pressable, StyleSheet, View} from 'react-native';
 import Animated, {
   interpolate,
   runOnJS,
@@ -9,9 +9,11 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import Svg, {ClipPath, Ellipse, Image} from 'react-native-svg';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {Box, Button, Logo, Text} from '../core/components';
 import LoginForm from './forms/LoginForm';
+import RegisterForm from './forms/RegisterForm';
 
 const {width, height} = Dimensions.get('window');
 
@@ -54,10 +56,14 @@ const WelcomeScreen = () => {
     };
   });
 
+  const closeHandler = () => {
+    imagePosition.value = 1;
+  };
+
   const loginHandler = () => {
     imagePosition.value = 0;
 
-    if (isLoginPressed) {
+    if (!isLoginPressed) {
       runOnJS(setIsLoginPressed)(true);
     }
   };
@@ -65,7 +71,7 @@ const WelcomeScreen = () => {
   const registerHandler = () => {
     imagePosition.value = 0;
 
-    if (!isLoginPressed) {
+    if (isLoginPressed) {
       runOnJS(setIsLoginPressed)(false);
     }
   };
@@ -97,9 +103,11 @@ const WelcomeScreen = () => {
             clipPath="url(#clipPathId)"
           />
         </Svg>
-        <Animated.View style={[styles.closeButtonContainer, closeButtonContainerStyle]}>
-          <Text onPress={() => (imagePosition.value = 1)}>X</Text>
-        </Animated.View>
+        <Pressable onPress={closeHandler}>
+          <Animated.View style={[styles.closeButtonContainer, closeButtonContainerStyle]}>
+            <Icon name="close" size={18} />
+          </Animated.View>
+        </Pressable>
       </Animated.View>
       <View style={styles.bottomSection}>
         <Animated.View style={buttonsAnimatedStyle}>
@@ -120,7 +128,7 @@ const WelcomeScreen = () => {
           />
         </Animated.View>
         <Animated.View style={[StyleSheet.absoluteFill, styles.formContainer, formAnimatedStyle]}>
-          <LoginForm />
+          {isLoginPressed ? <LoginForm /> : <RegisterForm />}
         </Animated.View>
       </View>
     </Box>

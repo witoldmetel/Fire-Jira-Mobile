@@ -1,17 +1,16 @@
 import React, {useState} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import {loginUser} from '../../api/auth-api';
-import {Box, Button, Text, TextInput} from '../../core/components';
-import {theme} from '../../core/theme';
+import {signInUser} from '../../api/auth-api';
+import {Box, Button, TextInput} from '../../core/components';
 import type {MainNavigatorRoutes} from '../../navigators';
 import type {StackNavigationProps} from '../../navigators/types';
 import {emailValidator, passwordValidator} from '../../utils/validations';
 
-type Navigation = StackNavigationProps<MainNavigatorRoutes, 'Login'>;
+type Navigation = StackNavigationProps<MainNavigatorRoutes, 'Register'>;
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const navigation = useNavigation<Navigation>();
 
   const [email, setEmail] = useState({value: '', error: ''});
@@ -19,7 +18,7 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const [_, setError] = useState('');
 
-  const onLoginPress = async () => {
+  const onRegisterPress = async () => {
     if (loading) {
       return;
     }
@@ -35,7 +34,7 @@ const LoginForm = () => {
 
     setLoading(true);
 
-    const response = await loginUser({
+    const response = await signInUser({
       email: email.value,
       password: password.value,
     });
@@ -68,30 +67,20 @@ const LoginForm = () => {
         secureTextEntry
         autoCapitalize="none"
       />
-      <View style={styles.forgotPassword}>
-        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
-          <Text style={styles.link}>Forgot your password?</Text>
-        </TouchableOpacity>
-      </View>
-      <Button label="Login" onPress={onLoginPress} style={styles.loginButton} />
+      <Button
+        label="Register"
+        onPress={onRegisterPress}
+        style={styles.registerButton}
+        disabled={!(email.value && password.value)}
+      />
     </Box>
   );
 };
 
 const styles = StyleSheet.create({
-  forgotPassword: {
-    width: '100%',
-    alignItems: 'flex-end',
-    marginBottom: 24,
-  },
-  loginButton: {
+  registerButton: {
     borderRadius: 8,
-  },
-  link: {
-    fontWeight: 'bold',
-    color: theme.palette.primary.main,
-    textDecorationLine: 'underline',
   },
 });
 
-export default LoginForm;
+export default RegisterForm;
