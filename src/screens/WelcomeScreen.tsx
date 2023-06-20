@@ -29,6 +29,15 @@ const WelcomeScreen = () => {
     };
   });
 
+  const closeButtonContainerStyle = useAnimatedStyle(() => {
+    const interpolation = interpolate(imagePosition.value, [0, 1], [180, 360]);
+
+    return {
+      opacity: withTiming(imagePosition.value === 1 ? 0 : 1, {duration: 800}),
+      transform: [{rotate: withTiming(interpolation + 'deg', {duration: 1000})}],
+    };
+  });
+
   const buttonsAnimatedStyle = useAnimatedStyle(() => {
     const interpolation = interpolate(imagePosition.value, [0, 1], [250, 0]);
 
@@ -36,14 +45,6 @@ const WelcomeScreen = () => {
       width: '100%',
       opacity: withTiming(imagePosition.value, {duration: 500}),
       transform: [{translateY: withTiming(interpolation, {duration: 1000})}],
-    };
-  });
-
-  const closeButtonContainerStyle = useAnimatedStyle(() => {
-    const interpolation = interpolate(imagePosition.value, [0, 1], [180, 360]);
-    return {
-      opacity: withTiming(imagePosition.value === 1 ? 0 : 1, {duration: 800}),
-      transform: [{rotate: withTiming(interpolation + 'deg', {duration: 1000})}],
     };
   });
 
